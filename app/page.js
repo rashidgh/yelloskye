@@ -1,12 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import SearchBar from "./component/SearchBar";
 import ProjectCard from "./component/ProjectCard";
 import ProjectsMap from "./component/Map";
 import ChartsPage from "./component/Chart";
 import Navbar from "./component/Navbar";
 
-// Sample projects (you can fetch from API or JSON file)
 const sampleProjects = [
   {
     id: 1,
@@ -15,7 +15,7 @@ const sampleProjects = [
     lastOrder: "20/05/2023",
     tags: ["Maps", "Images", "Videos"],
     latitude: 12.9314,
-    longitude: 77.5927, // Vijayarangam Layout, Jayanagar, Bengaluru
+    longitude: 77.5927,
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const sampleProjects = [
     lastOrder: "12/04/2023",
     tags: ["Maps", "Panos", "Virtual Tours"],
     latitude: 18.5166,
-    longitude: 73.8636, // Trimurti Honey Gold Building, Pune
+    longitude: 73.8636,
   },
   {
     id: 3,
@@ -33,12 +33,25 @@ const sampleProjects = [
     lastOrder: "28/02/2023",
     tags: ["Maps", "Images", "Videos"],
     latitude: 22.9444,
-    longitude: 88.3702, // Barrackpore, Kolkata
+    longitude: 88.3702,
   },
 ];
 
 const Page = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/sign-in"); 
+    } else {
+      setIsCheckingAuth(false); 
+    }
+  }, [router]);
+
+  if (isCheckingAuth) return null;
 
   const filteredProjects = sampleProjects.filter(project =>
     project.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -46,11 +59,11 @@ const Page = () => {
 
   return (
     <div>
-     <Navbar />
+      <Navbar />
       <div className="p-4 h-[70vh] w-[100vw]">
         <SearchBar value={searchTerm} onChange={setSearchTerm} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-          {filteredProjects?.map(project => (
+          {filteredProjects.map(project => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>

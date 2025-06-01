@@ -17,7 +17,6 @@ export default function ProjectsMap({ projects }) {
   const [popupContent, setPopupContent] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
 
-  // Function to handle marker click and show project details
   const handleMarkerClick = projectData => {
     setPopupContent(`
       <div>
@@ -48,12 +47,11 @@ export default function ProjectsMap({ projects }) {
       target: mapRef.current,
       layers: [new TileLayer({ source: new OSM() }), vectorLayer],
       view: new View({
-        center: fromLonLat([78.9629, 22.5937]), // Center of India
+        center: fromLonLat([78.9629, 22.5937]), 
         zoom: 5,
       }),
     });
 
-    // Add project markers (red dots) to the map
     projects.forEach(
       ({ latitude, longitude, name, description, orders, lastOrder, tags }) => {
         const marker = new Feature({
@@ -78,7 +76,6 @@ export default function ProjectsMap({ projects }) {
       }
     );
 
-    // Add click listener to show project details in the popup
     mapInstance.current.on("singleclick", function (evt) {
       const clickedFeature = mapInstance.current.forEachFeatureAtPixel(
         evt.pixel,

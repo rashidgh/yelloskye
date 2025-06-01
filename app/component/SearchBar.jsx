@@ -1,4 +1,3 @@
-// /components/SearchBar.js
 'use client'
 export default function SearchBar({ value, onChange }) {
   return (

@@ -128,12 +128,10 @@ export default function ChartsPage() {
         gap: "1rem",
       }}
     >
-      {/* Line Chart (Top) */}
       <div style={{ flex: 1 }}>
         <Line data={lineData} options={chartOptions} />
       </div>
 
-      {/* Bar Charts (Bottom Row, Side-by-Side) */}
       <div style={{ flex: 1, display: "flex", gap: "1rem" }}>
         <div style={{ flex: 1 }}>
           <Bar data={barStageData} options={chartOptions} />

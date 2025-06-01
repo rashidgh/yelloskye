@@ -1,4 +1,3 @@
-// /components/ProjectDetailTabs.js
 "use client";
 export default function ProjectDetailTabs({ activeTab, setActiveTab }) {
   return (

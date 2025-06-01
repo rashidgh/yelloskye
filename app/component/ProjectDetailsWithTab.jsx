@@ -3,7 +3,6 @@ import { useParams } from "next/navigation";
 import React, { useState } from "react";
 import ProjectDetailsTabs from "../component/ProjectDetailsTabs";
 
-// You could replace this with actual fetched data
 const sampleProjects = [
   {
     id: 1,
