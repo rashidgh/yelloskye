@@ -1,0 +1,20 @@
+import React from "react";
+import { ClipLoader } from "react-spinners";
+
+const Spinner = () => {
+  return (
+    <div className="h-[15px]w-[15px]">
+      <ClipLoader
+      
+        color="blue"
+        loading={true}
+        // cssOverride={override}
+        size={80}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    </div>
+  );
+};
+
+export default Spinner;
