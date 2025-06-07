@@ -45,9 +45,9 @@ const Page = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      router.push("/sign-in"); 
+      router.push("/sign-in");
     } else {
-      setIsCheckingAuth(false); 
+      setIsCheckingAuth(false);
     }
   }, [router]);
 

@@ -8,7 +8,7 @@ import { auth } from "@/app/firebase/config";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const Login = () => {
+const forgetPassword = () => {
   const [credentials, setCredentials] = useState({
     email: "",
   });
@@ -28,7 +28,7 @@ const Login = () => {
       const res = await sendPasswordResetEmail(auth, email);
       console.log({ res });
       setCredentials({ email: "" });
-      router.push("sign-up");
+      router.push("sign-in");
       toast.success(`Password reset email sent to ${email}`);
 
     } catch (error) {
@@ -81,4 +81,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default forgetPassword;
